@@ -1,6 +1,7 @@
 import json, time
+import os
 
-apikey = open("apikey.txt", "r").read()
+apikey = os.environ.get("WEATHER_API_KEY")
 
 import urllib.request
 with urllib.request.urlopen("http://api.openweathermap.org/data/2.5/weather?id=2643743&appid={apikey}".format(apikey=apikey)) as response:
