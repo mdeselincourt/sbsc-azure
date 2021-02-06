@@ -4,7 +4,10 @@ import os
 apikey = os.environ.get("WEATHER_API_KEY")
 
 import urllib.request
-with urllib.request.urlopen("http://api.openweathermap.org/data/2.5/weather?id=2643743&appid={apikey}".format(apikey=apikey)) as response:
+url = 'http://api.openweathermap.org/data/2.5/weather?id=2643743&appid={appid}'.format(appid=apikey)
+# url.format(appid=apikey)
+print(url)
+with urllib.request.urlopen(url) as response:
     print(str(response))
     weather = json.loads(response.read().decode())
     wind = weather["wind"]
