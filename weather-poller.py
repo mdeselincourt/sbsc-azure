@@ -1,7 +1,7 @@
 import json, time
 
 import urllib.request
-with urllib.request.urlopen("http://api.openweathermap.org/data/2.5/weather?id=2643743&appid=71592af730427d9628023d03bb83f9b3") as response:
+with urllib.request.urlopen("http://api.openweathermap.org/data/2.5/weather?id=2643743&appid=") as response:
     print(str(response))
     weather = json.loads(response.read().decode())
     wind = weather["wind"]
