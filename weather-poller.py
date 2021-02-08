@@ -21,7 +21,11 @@ metadataUrl = 'http://169.254.169.254/metadata/identity/oauth2/token?api-version
 metadataHeaders = {'Metadata': 'true'}
 metadataRequest = requests.get(metadataUrl, headers=metadataHeaders) # headers=x
 metadata=metadataRequest.text
-print(metadataRequest.text)
+metadataJson = metadataRequest.text
+
+access_token = metadataRequest['access_token']
+
+print(access_token)
 
 exit(99) ## XXXXXXXXXXXXXXX
 
