@@ -20,8 +20,8 @@ print("Getting metadata")
 metadataUrl = 'http://169.254.169.254/metadata/identity/oauth2/token?api-version=2018-02-01&resource=https%3A%2F%2Fstorage.azure.com%2F'
 metadataHeaders = {'Metadata': 'true'}
 metadataRequest = requests.get(metadataUrl, headers=metadataHeaders) # headers=x
-metadata=metadataRequest.text
-metadataJson = json.loads(metadataRequest.text)
+metadataString = metadataRequest.text
+metadataJson = json.loads(metadataString)
 
 access_token = metadataRequest['access_token']
 
