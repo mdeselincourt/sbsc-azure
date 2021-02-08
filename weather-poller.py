@@ -23,7 +23,7 @@ metadataRequest = requests.get(metadataUrl, headers=metadataHeaders) # headers=x
 metadataString = metadataRequest.text
 metadataJson = json.loads(metadataString)
 
-access_token = metadataRequest['access_token']
+access_token = metadataJson['access_token']
 
 
 print(access_token)
