@@ -1,20 +1,27 @@
-import json # 
-import time # For timestamping data
-import os, uuid # For access to API key and for Az blob storage
-import requests
+try:
+    # Native
+    import json # 
+    import time # For timestamping data
+    import os, uuid # For access to API key and for Az blob storage
+    
+    # External
+    import requests
+    from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient, __version__
 
-from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient, __version__
+except:
+    print ("You need requests, azure.storage.blob installed")
 
 # print("Azure Blob Storage v" + __version__)
 
 ### GET METADATA ABOUT SELF (AZURE VM)
 
 metadataUrl = 'http://169.254.169.254/metadata/identity/oauth2/token?api-version=2018-02-01&resource=https%3A%2F%2Fstorage.azure.com%2F'
-metadataRequest = requests.get(metadataUrl)
+metadataHeaders = {'Metadata': 'true'}
+metadataRequest = requests.get(metadataUrl, metadataHeaders)
 metadata=metadataRequest.text
 print(metadataRequest.text)
 
-
+exit(99) ## XXXXXXXXXXXXXXX
 
 headers = {
     'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Im5PbzNaRHJPRFhFSzFqS1doWHNsSFJfS1hFZyIsImtpZCI6Im5PbzNaRHJPRFhFSzFqS1doWHNsSFJfS1hFZyJ9.eyJhdWQiOiJodHRwczovL3N0b3JhZ2UuYXp1cmUuY29tLyIsImlzcyI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2VlMWQ4OThjLTBhNjQtNGIxMy05NTZkLWI4NDUyYjEwZmRhYy8iLCJpYXQiOjE2MTI4MDM2MjUsIm5iZiI6MTYxMjgwMzYyNSwiZXhwIjoxNjEyODkwMzI1LCJhaW8iOiJFMlpnWUxoUjZ2YTc5ZnhEdnVuVFo3RjlidjVUQ1FBPSIsImFwcGlkIjoiMGExOGY5MzAtYWMxZi00YmU5LWE2MWUtNzM5NmU5YTMzOWNkIiwiYXBwaWRhY3IiOiIyIiwiaWRwIjoiaHR0cHM6Ly9zdHMud2luZG93cy5uZXQvZWUxZDg5OGMtMGE2NC00YjEzLTk1NmQtYjg0NTJiMTBmZGFjLyIsIm9pZCI6IjYzNDBlYWY1LWFkOWUtNGMyMC04MDBmLTVlMTk3NzQ0YzY4MiIsInJoIjoiMC5BQUFBaklrZDdtUUtFMHVWYmJoRkt4RDlyREQ1R0FvZnJPbExwaDV6bHVtak9jMkJBQUEuIiwic3ViIjoiNjM0MGVhZjUtYWQ5ZS00YzIwLTgwMGYtNWUxOTc3NDRjNjgyIiwidGlkIjoiZWUxZDg5OGMtMGE2NC00YjEzLTk1NmQtYjg0NTJiMTBmZGFjIiwidXRpIjoiOE9IUkFONEM4RTZxbDViN0thTVRBQSIsInZlciI6IjEuMCIsInhtc19taXJpZCI6Ii9zdWJzY3JpcHRpb25zLzVjNmRkMDAyLTNhMjgtNGNiZS04ZGUzLTYxMDIxOTY3ZmY2NS9yZXNvdXJjZWdyb3Vwcy9yZy1zYnNjL3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS92aXJ0dWFsTWFjaGluZXMvdm0tYjFscy1zYnNjLXVrc291dGgtMDAxIn0.nDIkVrDUhuWFO1aIV3MS1qbc9eWouRGwawnZia8zQvoIzTmJDUcluTMR5vIeCAFdh7D_0ryU6OR246vEEIziML3SXUUro2DYf3MJr48Dh7Q7ZzCNDOlxkx0qa_AeAv_q6aWHxao__t9R2gJj-lLENFsSf4GbI2poRPMe8IX0gnjOvSPYvp-wlxX7n39qDAtR0By4FtYCrUU16iz40t0B55BcDQufhJ-gPk9tJbmjswXT-CxJ8P8g7TNuM73tAghkBE78g0Msj2izUSiYskequ6oVd0h5amyjxL_gR2HN4YCqqahdAajBsGcR2vhFftsntavuSEREqupKp220nL54lg',
@@ -29,7 +36,7 @@ request = requests.get(blobUrl, headers=headers)
 
 print(request.text)
 
-exit(99)
+exit(99) ## XXXXXXXXXXXXXX
 
 apikey = os.environ.get("WEATHER_API_KEY")
 
